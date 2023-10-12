@@ -1,39 +1,34 @@
-import useAuth from "@/hooks/useAuth";
-import Head from "next/head";
-import Image from "next/image";
-import { useState } from "react";
-import { SubmitHandler, useForm } from "react-hook-form";
+import Head from 'next/head'
+import Image from 'next/image'
+import { useState } from 'react'
+import { SubmitHandler, useForm } from 'react-hook-form'
+import useAuth from '../hooks/useAuth'
 
 interface Inputs {
-  email: string;
-  password: string;
+  email: string
+  password: string
 }
 
-function login() {
-  const [login, setLogin] = useState(false);
-  const {signIn, signUp} = useAuth()
+function Login() {
+  const [login, setLogin] = useState(false)
+  const { signIn, signUp } = useAuth()
 
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<Inputs>();
+  } = useForm<Inputs>()
 
-
-  const onSubmit: SubmitHandler<Inputs> = async ({email, password}) => {
+  const onSubmit: SubmitHandler<Inputs> = async ({ email, password }) => {
     if (login) {
       await signIn(email, password)
-    }
-    else{
+    } else {
       await signUp(email, password)
     }
-  };
+  }
 
   return (
-    <div
-      className="relative flex h-screen w-screen flex-col bg-black md:items-center
-    md:justify-center md:bg-transparent"
-    >
+    <div className="relative flex h-screen w-screen flex-col bg-black md:items-center md:justify-center md:bg-transparent">
       <Head>
         <title>Netflix</title>
         <link rel="icon" href="/favicon.ico" />
@@ -43,7 +38,7 @@ function login() {
         layout="fill"
         className="-z-10 !hidden opacity-60 sm:!inline"
         objectFit="cover"
-        alt=""
+        alt=''
       />
 
       <img
@@ -64,8 +59,8 @@ function login() {
               type="email"
               placeholder="Email"
               className="input"
-              {...register("email", { required: true })}
-            />{" "}
+              {...register('email', { required: true })}
+            />
             {errors.email && (
               <p className="p-1 text-[13px] font-light  text-orange-500">
                 Please enter a valid email.
@@ -77,8 +72,8 @@ function login() {
               type="password"
               placeholder="Password"
               className="input"
-              {...register("password", { required: true })}
-            />{" "}
+              {...register('password', { required: true })}
+            />
             {errors.password && (
               <p className="p-1 text-[13px] font-light  text-orange-500">
                 Your password must contain between 4 and 60 characters.
@@ -89,23 +84,24 @@ function login() {
 
         <button
           className="w-full rounded bg-[#e50914] py-3 font-semibold"
-          onClick={() => {
-            setLogin(true);
-          }}
+          onClick={() => setLogin(true)}
         >
-          Sign in
+          Sign In
         </button>
 
         <div className="text-[gray]">
-          New to Netflix?{" "}
-          <button type="submit" className="text-white hover:underline"
-          onClick={() => setLogin(false)}>
+          New to Netflix?{' '}
+          <button
+            type="submit"
+            className="text-white hover:underline"
+            onClick={() => setLogin(false)}
+          >
             Sign up now
           </button>
         </div>
       </form>
     </div>
-  );
+  )
 }
 
-export default login;
+export default Login
