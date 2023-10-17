@@ -1,31 +1,31 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import { useState } from 'react'
-import { SubmitHandler, useForm } from 'react-hook-form'
-import useAuth from '../hooks/useAuth'
+import Head from "next/head";
+import Image from "next/image";
+import { useState } from "react";
+import { SubmitHandler, useForm } from "react-hook-form";
+import useAuth from "../hooks/useAuth";
 
 interface Inputs {
-  email: string
-  password: string
+  email: string;
+  password: string;
 }
 
 function Login() {
-  const [login, setLogin] = useState(false)
-  const { signIn, signUp } = useAuth()
+  const [login, setLogin] = useState(false);
+  const { signIn, signUp } = useAuth();
 
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<Inputs>()
+  } = useForm<Inputs>();
 
   const onSubmit: SubmitHandler<Inputs> = async ({ email, password }) => {
     if (login) {
-      await signIn(email, password)
+      await signIn(email, password);
     } else {
-      await signUp(email, password)
+      await signUp(email, password);
     }
-  }
+  };
 
   return (
     <div className="relative flex h-screen w-screen flex-col bg-black md:items-center md:justify-center md:bg-transparent">
@@ -38,7 +38,7 @@ function Login() {
         layout="fill"
         className="-z-10 !hidden opacity-60 sm:!inline"
         objectFit="cover"
-        alt=''
+        alt=""
       />
 
       <img
@@ -59,7 +59,7 @@ function Login() {
               type="email"
               placeholder="Email"
               className="input"
-              {...register('email', { required: true })}
+              {...register("email", { required: true })}
             />
             {errors.email && (
               <p className="p-1 text-[13px] font-light  text-orange-500">
@@ -72,7 +72,7 @@ function Login() {
               type="password"
               placeholder="Password"
               className="input"
-              {...register('password', { required: true })}
+              {...register("password", { required: true })}
             />
             {errors.password && (
               <p className="p-1 text-[13px] font-light  text-orange-500">
@@ -90,7 +90,7 @@ function Login() {
         </button>
 
         <div className="text-[gray]">
-          New to Netflix?{' '}
+          New to Netflix?{" "}
           <button
             type="submit"
             className="text-white hover:underline"
@@ -101,7 +101,7 @@ function Login() {
         </div>
       </form>
     </div>
-  )
+  );
 }
 
-export default Login
+export default Login;
