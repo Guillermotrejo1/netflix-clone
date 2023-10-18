@@ -30,14 +30,16 @@ export default function Home({
   topRated,
   trendingNow,
 }: Props) {
-const {logout, loading} = useAuth()
-const showModal = useRecoilValue(modalState)
+  const { logout, loading } = useAuth();
+  const showModal = useRecoilValue(modalState);
 
-if (loading) return null
+  if (loading) return null;
 
   return (
     <div
-      className="relative h-screen bg-gradient-to-b lg:h-[140vh]"
+      className={`relative h-screen bg-gradient-to-b lg:h-[140vh] ${
+        showModal && "!h-screen overflow-hidden"
+      }`}
     >
       <Head>
         <title>Home - Netflix</title>
@@ -45,9 +47,9 @@ if (loading) return null
       </Head>
       <Header />
       <main className="relative pl-4 pb-24 lg:space-y-24 lg:pl-16">
-        <Banner netflixOriginals={netflixOriginals}/>
+        <Banner netflixOriginals={netflixOriginals} />
         <section className="md:space-y-24">
-        <Row title="Trending Now" movies={trendingNow} />
+          <Row title="Trending Now" movies={trendingNow} />
           <Row title="Top Rated" movies={topRated} />
           <Row title="Action Thrillers" movies={actionMovies} />
           {/* My List Component */}
@@ -57,7 +59,7 @@ if (loading) return null
           <Row title="Documentaries" movies={documentaries} />
         </section>
       </main>
-      {showModal && <Modal/>}
+      {showModal && <Modal />}
     </div>
   );
 }
