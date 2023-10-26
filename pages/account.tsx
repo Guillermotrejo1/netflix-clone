@@ -30,6 +30,7 @@ function Account({ products }: Props) {
             width={120}
             height={120}
             className="cursor-pointer object-contain"
+            alt=''
           />
         </Link>
         <Link href="/account">
