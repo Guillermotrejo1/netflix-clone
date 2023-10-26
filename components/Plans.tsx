@@ -7,7 +7,6 @@ import Link from "next/link";
 import { useState } from "react";
 import Loader from "./Loader";
 import { loadCheckout } from "@/lib/Stripe";
-import Image from "next/image";
 
 interface Props {
   products: Product[];
@@ -34,7 +33,7 @@ function Plans({ products }: Props) {
 
       <header className="border-b border-white/10 bg-[#141414]">
         <Link href="/">
-          <Image
+          <img
             src="https://rb.gy/ulxxee"
             alt="Netflix"
             width={150}

@@ -6,7 +6,6 @@ import Membership from '../components/Membership'
 import useAuth from '../hooks/useAuth'
 import useSubcription from "@/hooks/useSubcription";
 import payments from "@/lib/Stripe";
-import Image from 'next/image'
 
 interface Props {
   products: Product[]
@@ -26,7 +25,7 @@ function Account({ products }: Props) {
 
       <header className={`bg-[#141414]`}>
         <Link href="/">
-          <Image
+          <img
             src="https://rb.gy/ulxxee"
             width={120}
             height={120}
@@ -35,7 +34,7 @@ function Account({ products }: Props) {
           />
         </Link>
         <Link href="/account">
-          <Image
+          <img
             src="https://rb.gy/g1pwyx"
             alt=""
             className="cursor-pointer rounded"
