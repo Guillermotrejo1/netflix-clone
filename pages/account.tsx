@@ -35,7 +35,7 @@ function Account({ products }: Props) {
           />
         </Link>
         <Link href="/account">
-          <img
+          <Image
             src="https://rb.gy/g1pwyx"
             alt=""
             className="cursor-pointer rounded"
