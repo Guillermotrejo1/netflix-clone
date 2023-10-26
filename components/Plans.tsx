@@ -1,22 +1,22 @@
-import useAuth from "@/hooks/useAuth";
-import { CheckIcon } from "@heroicons/react/outline";
-import { Product } from "@stripe/firestore-stripe-payments";
-import Table from "./Table";
-import Head from "next/head";
-import Link from "next/link";
-import { useState } from "react";
-import Loader from "./Loader";
+import { CheckIcon } from '@heroicons/react/outline'
+import { Product } from '@stripe/firestore-stripe-payments'
+import Head from 'next/head'
+import Link from 'next/link'
+import { useState } from 'react'
+import useAuth from '../hooks/useAuth'
 import { loadCheckout } from "@/lib/Stripe";
+import Loader from './Loader'
+import Table from './Table'
 
 interface Props {
-  products: Product[];
+  products: Product[]
 }
 
 function Plans({ products }: Props) {
-  const { logout, user } = useAuth();
-  const [selectedPlan, setSelectedPlan] = useState<Product | null>(products[2]);
+  const { logout, user } = useAuth()
+  const [selectedPlan, setSelectedPlan] = useState<Product | null>(products[2])
   const [isBillingLoading, setBillingLoading] = useState(false)
-  
+
   const subscribeToPlan = () => {
     if (!user) return
 
@@ -49,7 +49,7 @@ function Plans({ products }: Props) {
         </button>
       </header>
 
-      <main className="mx-auto max-w-5xl pt-28 pb-12 transition-all md:px-10">
+      <main className="mx-auto max-w-5xl px-5 pt-28 pb-12 transition-all md:px-10">
         <h1 className="mb-3 text-3xl font-medium">
           Choose the plan that's right for you
         </h1>
@@ -74,7 +74,7 @@ function Plans({ products }: Props) {
               <div
                 key={product.id}
                 className={`plan__box ${
-                  selectedPlan?.id === product.id ? "opacity-100" : "opacity-60"
+                  selectedPlan?.id === product.id ? 'opacity-100' : 'opacity-60'
                 }`}
                 onClick={() => setSelectedPlan(product)}
               >
@@ -101,7 +101,7 @@ function Plans({ products }: Props) {
         </div>
       </main>
     </div>
-  );
+  )
 }
 
-export default Plans;
+export default Plans
